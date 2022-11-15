@@ -30,15 +30,28 @@ user3 = User.create!(
 )
 
 event1 = Event.create!(
-  name: Faker::Name,
+  name: Faker::Name.name,
   detail: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
   spots: rand(1..10).floor,
   address: Faker::Address.street_name,
   date: Faker::Date.forward(days: 23),
   time: Faker::Time.forward(days: 23, period: :morning),
   private: true,
-  category: Faker::Sports,
-  user:user3
+  category: Faker::Hobby.activity,
+  user: user1
+)
+
+event2 = Event.create!(
+  name: Faker::Name.name,
+  detail: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+  spots: rand(1..10).floor,
+  address: Faker::Address.street_name,
+  date: Faker::Date.forward(days: 23),
+  time: Faker::Time.forward(days: 23, period: :morning),
+  private: true,
+  category: Faker::Hobby.activity,
+  user: user2
 )
 
 puts event1
+puts event2
