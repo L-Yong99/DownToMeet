@@ -6,6 +6,7 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 User.destroy_all
+Event.destroy_all
 
 user1 = User.create!(
   email: "malcolm@gmail.com",
@@ -31,10 +32,13 @@ user3 = User.create!(
 event1 = Event.create!(
   name: Faker::Name,
   detail: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-  spots: Faker::Sports,
+  spots: rand(1..10).floor,
   address: Faker::Address.street_name,
   date: Faker::Date.forward(days: 23),
   time: Faker::Time.forward(days: 23, period: :morning),
   private: true,
-  category: Faker::Sports
+  category: Faker::Sports,
+  user:user3
 )
+
+puts event1

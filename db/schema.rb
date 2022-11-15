@@ -42,6 +42,21 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_15_084246) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "events", force: :cascade do |t|
+    t.string "name"
+    t.text "detail"
+    t.integer "spots"
+    t.text "address"
+    t.date "date"
+    t.time "time"
+    t.boolean "private"
+    t.string "category"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_events_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -58,4 +73,5 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_15_084246) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "events", "users"
 end
