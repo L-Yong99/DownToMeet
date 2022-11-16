@@ -6,6 +6,8 @@ class EventsController < ApplicationController
 
   def show
     @event = Event.find(params[:id])
+    @pending_attendances = Attendance.where(event: @event , status: 'pending')
+    @accepted_attendances = Attendance.where(event: @event , status: 'accepted')
   end
 
   def new
@@ -33,7 +35,7 @@ class EventsController < ApplicationController
   end
 
   def hosted_event_detail
-    @hosted_event = Event.find(params[:id])
+  @hosted_event = Event.find(params[:id])
     if current_user == @hosted_event.user
       @pending_attendances = Attendance.where(event: @hosted_event, status: 'pending')
    else
@@ -47,6 +49,6 @@ class EventsController < ApplicationController
     attendance = Attendance.find_by(event: @hosted_event, user: @user)
     attendance.status = 'accepted'
     attendance.save
-    redirect_to hosted_event_detail_user_path(@hosted_event)
+    redirect_to event_path(@hosted_event)
   end
 end
