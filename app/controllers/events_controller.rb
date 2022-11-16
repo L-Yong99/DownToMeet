@@ -11,10 +11,14 @@ class EventsController < ApplicationController
   end
 
   def new
-
+    @event = Event.new
   end
 
   def create
+    @event = Event.new(event_params)
+    @event.user = current_user
+    @event.save
+    redirect_to event_path(@event)
   end
 
   def destroy
@@ -51,4 +55,10 @@ class EventsController < ApplicationController
     attendance.save
     redirect_to event_path(@hosted_event)
   end
+end
+
+private
+
+def event_params
+  params.require(:event).permit(:name, :detail, :category, :date, :time, :address, :spots, :private)
 end
