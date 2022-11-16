@@ -56,3 +56,48 @@
   <%# <%= link_to event.name, event_path(event), class:"d-flex flex-column" %>
   <%# <% end %>
   <%# </div> %>
+<div class="topnav">
+  <input type="text" placeholder="Search..">
+  <i class="fa-solid fa-magnifying-glass"></i>
+</div>
+<div class="container">
+<h1 class="mb-2">Welcome,User</h1>
+
+<h2> Events from your groups </h2>
+<h3> Calender </h3>
+
+<div class="btn-group">
+  <button class="btn btn-secondary btn-lg dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Any type
+  </button>
+  <div class="dropdown-menu">
+    ...
+  </div>
+</div>
+<div class="btn-group">
+  <button class="btn btn-secondary btn-lg dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Any distance
+  </button>
+  <div class="dropdown-menu">
+    ...
+  </div>
+   <p> Reset filters </p>
+   <p> Suggested Events </p>
+   <i class="fa-solid fa-square-check"></i>
+</div>
+
+<h2> Today </h2>
+
+  <% @events.each do |event| %>
+    <%= link_to event.name, event_path(event), class:"d-flex flex-column" %>
+  <% end %>
+</div>
+<div class="container">
+<p> No matches found for Tuesday, November 15, 2022 </p>
+<h2> Wednesday, November 16 </h2>
+</div>
+
+<div class="container">
+<p> WED, NOV 16, 6:00 PM </p>
+<h2> Wednesday, November 16 </h2>
+</div>
