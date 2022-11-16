@@ -1,18 +1,18 @@
 Rails.application.routes.draw do
-  get 'attendances/index'
-  get 'attendances/show'
-  get 'attendances/destroy'
-  get 'users/index'
-  get 'users/show'
-  get 'users/new'
-  get 'users/create'
-  get 'users/destroy'
   devise_for :users
   root to: "events#index"
   resources :users do
-    resources :events, only: [:index, :new, :show, :create , :destroy]
-    resources :attendances, only: [:index, :show, :destroy]
+    # resources :events, only: [:index, :new, :show, :create , :destroy]
+    member do
+      get 'events', to: 'events#hosted_event'
+      get 'events/:id', to: 'events#hosted_event_detail', as: :hosted_event_detail
+      post 'events/:id', to: 'events#hosted_event_patch'
+      get 'events/new', to: 'events#new'
+      post 'events/create', to: 'events#create'
+    end
+    resources :attendances, only: [:index, :show, :create]
   end
+  resources :attendances, only: [:destroy]
+  resources :events, only: [:index, :show, :destroy]
 
-  resources :events, only: [:index, :show]
 end

@@ -1,2 +1,29 @@
-<h1>Events#show</h1>
-<p>Find me in app/views/events/show.html.erb</p>
+<div><%= @event.name %></div>
+<br>
+<div><%= @event.detail %></div>
+<div><%= @event.spots%> left</div>
+<% if user_signed_in? %>
+  <% attendance = Attendance.find_by(user: current_user, event: @event) %>
+  <form action=<%="/users/#{current_user.id}/attendances"%> method="post">
+    <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+    <%= hidden_field_tag :event_id, @event.id %>
+    <% if attendance.nil? %>
+      <% if @event.private %>
+        <input type="submit" value="Request to Join" >
+      <% else %>
+        <input type="submit" value="Join" >
+      <% end %>
+    <% else %>
+      <% if attendance.status == 'accepted' %>
+        <input type="submit" value="Going" disabled>
+      <% elsif attendance.status == 'rejected' %>
+        <input type="submit" value="Rejected" disabled>
+      <% else %>
+        <input type="submit" value="Pending" disabled>
+      <% end %>
+    <% end %>
+  </form>
+  <% else %>
+
+<% end %>
+<%# <a href=<%="/users/#{current_user.id}/attendances"><input type="text" class="btn btn-primary" value="Request to join"></a> %>
