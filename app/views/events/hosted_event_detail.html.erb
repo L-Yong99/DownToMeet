@@ -1,0 +1,17 @@
+<div class="container">
+<h1><%= @hosted_event.name %></h1>
+  <% @pending_attendances.each do |attendance| %>
+    <div class="d-flex justify-content-between mb-3">
+      <h4><%= attendance.user.email %></h4>
+      <form action=<%="/users/#{current_user.id}/events/#{@hosted_event.id}"%> method="post">
+        <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+        <%# <%= hidden_field_tag :event_id, attendance.event.id %>
+        <%= hidden_field_tag :user_id, attendance.user.id %>
+        <input type="submit" value="Accept" class="btn btn-primary">
+      </form>
+    <% end %>
+    <%= link_to "Delete",
+        event_path(@hosted_event), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+  </div>
+</div>
+Ï
