@@ -1,0 +1,8 @@
+<div class="container">
+  <h1>My Hosted Events</h1>
+  <% @hosted_events.each_with_index do |hosted_event,i| %>
+    <%= link_to hosted_event.name, hosted_event_detail_user_path(hosted_event) %>
+    <div>Pending Count: <%= @count[i][:pending_count] %></div>
+    <div>Accepted Count: <%= @count[i][:accepted_count] %></div>
+  <% end %>
+</div>

@@ -5,8 +5,10 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
+Attendance.destroy_all
 User.destroy_all
 Event.destroy_all
+category = %w(sports games coding mingle movies)
 
 user1 = User.create!(
   email: "malcolm@gmail.com",
@@ -30,15 +32,26 @@ user3 = User.create!(
 )
 
 event1 = Event.create!(
-  name: Faker::Name,
+  name: Faker::Hobby.activity,
   detail: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
   spots: rand(1..10).floor,
   address: Faker::Address.street_name,
   date: Faker::Date.forward(days: 23),
   time: Faker::Time.forward(days: 23, period: :morning),
   private: true,
-  category: Faker::Sports,
-  user:user3
+  category: category.sample,
+  user:user1
 )
 
-puts event1
+event2 = Event.create!(
+  name: Faker::Hobby.activity,
+  detail: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+  spots: rand(1..10).floor,
+  address: Faker::Address.street_name,
+  date: Faker::Date.forward(days: 23),
+  time: Faker::Time.forward(days: 23, period: :morning),
+  private: true,
+  category: category.sample,
+  user:user2
+)
+# puts event1
