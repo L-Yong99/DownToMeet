@@ -1,9 +1,17 @@
 <div><%= @event.name %></div>
 <br>
+<div>
+  <p>Date</p>
+  <%= @event.date %>
+  <p>Time</p>
+  <%= @event.time %>
+  <p>Address</p>
+  <%= @event.address %>
+</div>
 <div><%= @event.detail %></div>
 <div><%= @event.spots%> left</div>
+<% attendance = Attendance.find_by(user: current_user, event: @event) %>
 <% if user_signed_in? %>
-  <% attendance = Attendance.find_by(user: current_user, event: @event) %>
   <form action=<%="/users/#{current_user.id}/attendances"%> method="post">
     <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
     <%= hidden_field_tag :event_id, @event.id %>
@@ -15,15 +23,60 @@
       <% end %>
     <% else %>
       <% if attendance.status == 'accepted' %>
-        <input type="submit" value="Going" disabled>
+        <input type="submit" value="Going" disabled class="btn btn-primary">
       <% elsif attendance.status == 'rejected' %>
-        <input type="submit" value="Rejected" disabled>
+        <input type="submit" value="Rejected" disabled class="btn btn-primary">
       <% else %>
-        <input type="submit" value="Pending" disabled>
+        <input type="submit" value="Pending" disabled class="btn btn-primary">
       <% end %>
     <% end %>
   </form>
+<% else %>
+  <% if @event.private %>
+    <%= link_to "Request to join", new_user_session_path, class:"btn btn-primary"%>
   <% else %>
+    <%= link_to "join", new_user_session_path, class:"btn btn-primary"%>
+  <% end %>
+<% end %>
+<% if current_user ==  @event.user %>
+  <%= link_to "Delete",
+        event_path(@event), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+  <% @pending_attendances.each do |attendance| %>
+    <div class="d-flex justify-content-between mb-3">
+      <h4><%= attendance.user.email %></h4>
+      <form action=<%="/users/#{current_user.id}/events/#{@event.id}"%> method="post">
+        <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+        <%# <%= hidden_field_tag :event_id, attendance.event.id %>
+        <%= hidden_field_tag :user_id, attendance.user.id %>
+        <input type="submit" value="Accept" class="btn btn-primary">
+      </form>
+    </div>
+  <% end %>
+
+  <h2>Organiser</h2>
+
+  <div class="card" style="width: 10rem;">
+    <img class="card-img-top" src="..." alt="Card image cap">
+    <div class="card-body">
+      <h5 class="card-title"><%= @event.user.first_name %></h5>
+      <p>Organiser</p>
+      <a href="#" class="btn btn-primary">Profile</a>
+      <a href="#" class="btn btn-primary">Remove</a>
+    </div>
+  </div>
+
+<h2>Attendees</h2>
+
+<%= @accepted_attendances.each do |attendee| %>
+  <div class="card" style="width: 10rem;">
+    <img class="card-img-top" src="..." alt="Card image cap">
+    <div class="card-body">
+      <h5 class="card-title"><%= attendee.user.first_name %></h5>
+      <p>Member</p>
+      <a href="#" class="btn btn-primary">Profile</a>
+      <a href="#" class="btn btn-primary">Remove</a>
+    </div>
+  </div>
+<% end %>
 
 <% end %>
-<%# <a href=<%="/users/#{current_user.id}/attendances"><input type="text" class="btn btn-primary" value="Request to join"></a> %>
