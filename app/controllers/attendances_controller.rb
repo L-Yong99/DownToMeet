@@ -4,9 +4,9 @@ class AttendancesController < ApplicationController
   end
 
   def create
-    @user = User.find(params[:user_id])
+    # @user = User.find(params[:user_id])
     event = Event.find(params[:event_id])
-    attendance = Attendance.new(user:@user, event:event)
+    attendance = Attendance.new(user:current_user, event:event)
     if event.private
       attendance.status = 'pending'
       attendance.save
@@ -14,7 +14,7 @@ class AttendancesController < ApplicationController
     else
       attendance.status = 'accepted'
       attendance.save
-      redirect_to user_attendances_path(@user)
+      redirect_to user_attendances_path(current_user)
     end
   end
 
@@ -22,5 +22,8 @@ class AttendancesController < ApplicationController
   end
 
   def destroy
+    attendance = Attendance.find(params[:id])
+    attendance.destroy
+    redirect_to user_attendances_path(current_user)
   end
 end

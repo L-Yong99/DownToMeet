@@ -2,9 +2,8 @@
 <h1>Attending Events</h1>
 <% @attendances.each_with_index do |attendance,i| %>
     <%= link_to attendance.event.name, event_path(attendance.user) %>
-  <% end %>
     <%= link_to "Delete",
-         user_attendances_path(current_user), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+         attendance_path(attendance), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
   </div>
-
+<% end %>
 </div>
