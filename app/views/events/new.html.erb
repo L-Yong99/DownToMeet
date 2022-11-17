@@ -1,2 +1,13 @@
-<h1>Events#new</h1>
-<p>Find me in app/views/events/new.html.erb</p>
+<h1>Create Event</h1>
+
+<%= simple_form_for(@event) do |f| %>
+  <%= f.input :name %>
+  <%= f.input :detail, as: :text %>
+  <%= f.input :category %>
+  <%= f.input :date, as: :date %>
+  <%= f.input :time, as: :time %>
+  <%= f.input :address %>
+  <%= f.input :spots, as: :integer %>
+  <%= f.input :private, as: :boolean, as: :radio_buttons %>
+  <%= f.submit %>
+<% end %>

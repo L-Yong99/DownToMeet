@@ -1,7 +1,7 @@
 <div class="container">
-  <% if user_signed_in? %>
-    <h1 id="header-font">Welcome, <%= current_user.first_name %> 👋</h1>
-  <% end %>
+<% if user_signed_in? %>
+  <h1 id="header-font">Welcome, <%= current_user.first_name %> 👋</h1>
+ <% end %>
   <div class="d-flex mt-4">
     <div class="calendar-container" >
       <%# <div id="calendar">
