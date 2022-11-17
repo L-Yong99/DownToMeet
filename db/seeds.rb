@@ -31,6 +31,20 @@ user3 = User.create!(
   password: "123456"
 )
 
+user4 = User.create!(
+  email: "kkkk@gmail.com",
+  first_name: "kh",
+  last_name: "hhhx",
+  password: "123456"
+)
+
+user5 = User.create!(
+  email: "xxxx@gmail.com",
+  first_name: "xxx",
+  last_name: "hhhx",
+  password: "123456"
+)
+
 event1 = Event.create!(
   name: Faker::Hobby.activity,
   detail: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
