@@ -1,7 +1,8 @@
+<div class="container">
 <h1>Create Event</h1>
-
 <%= simple_form_for(@event) do |f| %>
   <%= f.input :name %>
+  <%= f.input :photo, as: :file, label: "Image of activity" %>
   <%= f.input :detail, as: :text %>
   <%= f.input :category %>
   <%= f.input :date, as: :date %>
@@ -11,3 +12,4 @@
   <%= f.input :private, as: :boolean, as: :radio_buttons %>
   <%= f.submit %>
 <% end %>
+</div>
