@@ -18,7 +18,11 @@
 <div class="event-main">
   <div class="event-main-container container d-flex pt-5">
     <div class="left-container">
-      <img src="https://www.meetup.com/_next/image/?url=https%3A%2F%2Fsecure-content.meetupstatic.com%2Fimages%2Fclassic-events%2F508459663%2F676x380.webp&w=3840&q=75" alt="">
+      <% if @event.photo.key.nil? %>
+        <img src="https://cdn.britannica.com/34/233234-050-1649BFA9/Pug-dog.jpg" alt="image place holder">
+      <% else %>
+        <%= cl_image_tag @event.photo.key %>
+      <% end %>
       <h4 class="mt-4 font-weight-bold">Details</h4>
       <p class="mt-3"><%= @event.detail %></p>
       <div class="attendees-header mt-5">
@@ -143,4 +147,3 @@
     </div>
   </div>
 </div>
-
