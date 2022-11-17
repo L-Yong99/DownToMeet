@@ -5,10 +5,8 @@
   <% end %>
   <div class="d-flex mt-4">
     <div class="calendar-container">
-      <div class="event-types">Select Event Types 1. upcoming 2.Past</div>
-      <div id="calendar">
-        my calendar
-      </div>
+      <%# <div class="event-types">Select Event Types 1. upcoming 2.Past</div> %>
+    <%= render "shared/datepicker" %>
     </div>
     <div class="event-list">
       <div class="date">
@@ -54,13 +52,4 @@
       <% end %>
     </div>
   </div>
-</div>
-<div class="container">
-  <h1>Attending Events</h1>
-  <% @attendances.each_with_index do |attendance,i| %>
-    <%= link_to attendance.event.name, event_path(attendance.user) %>
-    <%= link_to "Delete",
-         attendance_path(attendance), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
-  </div>
-<% end %>
 </div>

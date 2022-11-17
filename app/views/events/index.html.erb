@@ -1,21 +1,16 @@
 <div class="container">
-<% if user_signed_in? %>
-  <h1 id="header-font">Welcome, <%= current_user.first_name %> 👋</h1>
- <% end %>
-  <div class="d-flex mt-4">
+  <% if user_signed_in? %>
+    <h1 id="header-font">Welcome, <%= current_user.first_name %> 👋</h1>
+  <% end %>
+  <div class="d-flex mt-4 event-main-container">
     <div class="calendar-container" >
       <%# <div id="calendar">
         my calendar
       </div> %>
-      <%# <div class="flatpickr" data-controller="datepicker" >
-        <input type="text" placeholder="Select Date.." data-input data-datepicker-target ="datePicker"> <!-- input is mandatory -->
-        <a class="input-button" title="toggle" data-toggle>
-          <i class="icon-calendar"></i>
-        </a>
-        <a class="input-button" title="clear" data-clear>
-          <i class="icon-close"></i>
-        </a>
+      <%# <div class="flatpickr mt-5" data-controller="datepicker" >
+        <input type="text" data-datepicker-target="datePicker" placeholder="Select Date.." data-input class="date-picker-input d-none"  > <!-- input is mandatory -->
       </div> %>
+        <%= render "shared/datepicker" %>
     </div>
     <div class="event-list">
       <div class="date">
