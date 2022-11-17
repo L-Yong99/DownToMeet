@@ -1,10 +1,21 @@
 <div class="container">
-  <h1 id="header-font">Welcome, <%= current_user.first_name %> 👋</h1>
+  <% if user_signed_in? %>
+    <h1 id="header-font">Welcome, <%= current_user.first_name %> 👋</h1>
+  <% end %>
   <div class="d-flex mt-4">
-    <div class="calendar-container">
-      <div id="calendar">
+    <div class="calendar-container" >
+      <%# <div id="calendar">
         my calendar
-      </div>
+      </div> %>
+      <%# <div class="flatpickr" data-controller="datepicker" >
+        <input type="text" placeholder="Select Date.." data-input data-datepicker-target ="datePicker"> <!-- input is mandatory -->
+        <a class="input-button" title="toggle" data-toggle>
+          <i class="icon-calendar"></i>
+        </a>
+        <a class="input-button" title="clear" data-clear>
+          <i class="icon-close"></i>
+        </a>
+      </div> %>
     </div>
     <div class="event-list">
       <div class="date">
@@ -14,22 +25,17 @@
         <%= link_to event_path(event), class:"d-flex flex-column link" do %>
           <div class="event-container">
             <div class="event-first-container"><img src="https://ichef.bbci.co.uk/news/999/cpsprodpb/15951/production/_117310488_16.jpg" alt=""></div>
-
             <div class="event-mid-container d-flex flex-column  justify-content-between">
-
-                <div class="d-flex justify-content-between">
-                  <h6 class="date-font"><%= event.date %> <%= event.time %></h6>
-                  <h6 class="dark-font">Suggested</h6>
-                </div>
-
+              <div class="d-flex justify-content-between">
+                <h6 class="date-font"><%= event.date %> <%= event.time %></h6>
+                <h6 class="dark-font">Suggested</h6>
+              </div>
               <div>
                 <h6 class="dark-font"><strong><%= event.name%></strong></h6>
               </div>
-
               <div>
                 <p class="sub-font"><%= event.category%></p>
               </div>
-
               <div class="d-flex justify-content-between align-items-center" >
                 <h6 class="sub-font"><%= event.spots%> attendees</h6>
                 <div class="icon d-flex">
@@ -37,10 +43,8 @@
                   <i class="fa-solid fa-star fa-lg"></i>
                 </div>
               </div>
-
             </div>
           </div>
-
         <% end %>
         <%# <%= link_to event.name, event_path(event), class:"d-flex flex-column" %>
       <% end %>

@@ -8,6 +8,8 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
     @pending_attendances = Attendance.where(event: @event , status: 'pending')
     @accepted_attendances = Attendance.where(event: @event , status: 'accepted')
+    @user_attending = Attendance.find_by(event: @event , user:current_user, status: 'accepted')
+    @spot_left =  @event.spots - @accepted_attendances.count
   end
 
   def new
