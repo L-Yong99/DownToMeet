@@ -11,7 +11,7 @@ export default class extends Controller {
     console.log('Date picker controller')
     const myInput = this.datePickerTarget;
     console.log(myInput)
-    const fp = flatpickr(myInput,{mode: "range"});  // flatpickr
+    this.fp = flatpickr(myInput,{inline:"true"});  // flatpickr
 
   }
 }

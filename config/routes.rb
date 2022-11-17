@@ -15,4 +15,6 @@ Rails.application.routes.draw do
   resources :attendances, only: [:destroy]
   resources :events, only: [:index, :show, :destroy, :new, :create]
 
+  resources :pages
+
 end

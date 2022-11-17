@@ -61,3 +61,14 @@
     </div>
   <% end %>
 <% e
+
+
+<div class="container">
+  <h1>Attending Events</h1>
+  <% @attendances.each_with_index do |attendance,i| %>
+    <%= link_to attendance.event.name, event_path(attendance.user) %>
+    <%= link_to "Delete",
+         attendance_path(attendance), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+  </div>
+<% end %>
+</div>

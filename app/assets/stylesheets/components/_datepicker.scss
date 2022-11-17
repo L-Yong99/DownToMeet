@@ -1,0 +1,33 @@
+@import '~flatpickr/dist/flatpickr.css';
+
+.flatpickr{
+  box-shadow:none;
+  font-size:300px;
+}
+
+.date-picker-input{
+  text-align:center;
+  // width:80%;
+}
+
+.flatpickr-calendar {
+width:80%;
+box-shadow:none;
+border: #a2a2a2a2 2px solid;
+border-radius:10px;
+// text-align: center;
+}
+
+.dayContainer{
+  text-align: center;
+  justify-content: center;
+}
+
+.flatpickr-weekdaycontainer{
+  justify-content: center;
+  gap:16px;
+}
+
+span.flatpickr-weekday {
+ flex:0;
+}
