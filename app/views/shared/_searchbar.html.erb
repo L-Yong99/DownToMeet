@@ -1,5 +1,15 @@
-<form class="search-form" action="">
-  <input type ="search" placeholder="Search for keywords"  class="search">
-  <input type ="search-country" placeholder="Enter location"  class="search-country">
-  <button type="submit" class="search-submit"><i class="fa-solid fa-magnifying-glass"></i></button>
-</form>
+<%= form_with url: "/events/search", method: :get, class: "search-form" do %>
+  <%= text_field_tag :query,
+    params[:query],
+    class: "search",
+    placeholder: "Search for event"
+  %>
+  <%= text_field_tag :address,
+     params[:address],
+    class: "search-country",
+    placeholder: "Enter Location"
+  %>
+  <%= button_tag type: 'submit', class: "search-submit" do %>
+    <i class="fa-solid fa-magnifying-glass"></i>
+  <% end %>
+<% end %>

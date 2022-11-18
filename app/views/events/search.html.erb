@@ -1,18 +1,4 @@
-<div class="container">
-  <% if user_signed_in? %>
-    <h1 id="header-font">Welcome, <%= current_user.first_name %> 👋</h1>
-  <% end %>
-  <div class="d-flex mt-4 event-main-container">
-    <div class="calendar-container" >
-      <%# <div id="calendar">
-        my calendar
-      </div> %>
-      <%# <div class="flatpickr mt-5" data-controller="datepicker" >
-        <input type="text" data-datepicker-target="datePicker" placeholder="Select Date.." data-input class="date-picker-input d-none"  > <!-- input is mandatory -->
-      </div> %>
-        <%= render "shared/datepicker" %>
-    </div>
-    <div class="event-list">
+<div class="event-list">
       <div class="date">
         <h3>Wednesday, November 16</h3>
       </div>
@@ -54,19 +40,3 @@
         <%# <%= link_to event.name, event_path(event), class:"d-flex flex-column" %>
       <% end %>
     </div>
-  </div>
-</div>
-<%#
-<div class="container">
-  <h1 class="mb-2">All Events</h1>
-  <% @events.each do |event| %>
-  <%# <%= link_to event.name, event_path(event), class:"d-flex flex-column" %>
-  <%# <% end %>
-  <%# </div> %>
-
-
-
-    <%# <div class="outer">
-    <div class="inner">
-    </div>
-</div> %>

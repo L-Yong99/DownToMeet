@@ -4,7 +4,6 @@ class EventsController < ApplicationController
     @events = Event.all
     @events_upcoming = Event.where("date >= ?", Date.today)
     all_dates = Event.select([:id, :date])
-    # raise
   end
 
   def show
@@ -32,6 +31,16 @@ class EventsController < ApplicationController
     redirect_to events_user_path(current_user)
   end
 
+  def search
+    @events = Event.all
+    if params[:query].present?
+      sql_query = "name ILIKE :query OR user ILIKE :query"
+      @events = Event.where(sql_query, query: "%#{params[:query]}%")
+    else
+      @events = Event.all
+    end
+  end
+
   def hosted_event
     @hosted_events = Event.where(user:current_user)
     @count = @hosted_events.map do |hosted_event|
@@ -44,12 +53,12 @@ class EventsController < ApplicationController
   end
 
   def hosted_event_detail
-  @hosted_event = Event.find(params[:id])
-    if current_user == @hosted_event.user
-      @pending_attendances = Attendance.where(event: @hosted_event, status: 'pending')
-   else
-      redirect_to events_user_path(current_user)
-   end
+    @hosted_event = Event.find(params[:id])
+      if current_user == @hosted_event.user
+        @pending_attendances = Attendance.where(event: @hosted_event, status: 'pending')
+      else
+        redirect_to events_user_path(current_user)
+      end
   end
 
   def hosted_event_patch
