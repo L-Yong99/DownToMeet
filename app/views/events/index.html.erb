@@ -17,6 +17,8 @@
         <h3>Wednesday, November 16</h3>
       </div>
       <% @events.each do |event| %>
+      <%# <% event_date = Date.new(event.date.to_datetime) %>
+      <%# <% event_time= Time.new(event.time)%>
         <%= link_to event_path(event), class:"d-flex flex-column link" do %>
           <div class="event-container">
             <div class="event-first-container">
@@ -29,7 +31,7 @@
             </div>
             <div class="event-mid-container d-flex flex-column  justify-content-between">
               <div class="d-flex justify-content-between">
-                <h6 class="date-font"><%= event.date %> <%= event.time %></h6>
+                <h6 class="date-font"><%= event.date.to_datetime.strftime("%a,%b %d") %> <%= event.time.to_datetime.strftime("%l:%M %p SST") %></h6>
                 <h6 class="dark-font">Suggested</h6>
               </div>
               <div>
