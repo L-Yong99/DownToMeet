@@ -28,7 +28,12 @@
           <a class="nav-link" href="#"> <i class="fa-regular fa-bell"></i></a>
         </li>
         <li class="nav-item dropdown">
+        <% if current_user.image.key.nil? %>
           <img class="avatar dropdown-toggle" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" src="https://kitt.lewagon.com/placeholder/users/ssaunier" />
+          <% else %>
+          <%= cl_image_tag current_user.image.key, class:"avatar dropdown-toggle", id:"navbarDropdown",  data:{bs_toggle:"dropdown"} %>
+          <% end %>
+
           <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
             <a class="dropdown-item" href=<%="/users/#{current_user.id}/attendances"%>>Attending Events</a>
               <a class="dropdown-item" href=<%="/users/#{current_user.id}/events"%>>Hosted Event</a>
