@@ -1,0 +1,45 @@
+
+<div class="container profile-container ">
+  <h1>Edit profile</h1>
+  <% if current_user.image.key.nil? %>
+    <img class="avatar" src="https://kitt.lewagon.com/placeholder/users/ssaunier" alt="avatarupload">
+    <% else %>
+  <% end %>
+  <%= simple_form_for(@user) do |f| %>
+    <div class="form-inputs">
+      <%# <div class="row"> %>
+      <div class="myavatar"> <%= cl_image_tag current_user.image.key, class:"avatar-large"%></div>
+      <%= f.input :image, as: :file, label: "Your Profile Photo", class:"image-upload"%>
+
+      <div class="form-group mb-5">
+        <%= f.input :first_name, class:"form-control mb-1"  %>
+        <%= f.label :last_name %>
+        <%= f.text_field :last_name, class:"form-control mb-4"  %>
+        <%= f.label :email %>
+        <%= f.text_field :email, class:"form-control mb-4" %>
+        <div class="d-grid gap-2">
+          <%= f.button :submit, "Update Profile", class: 'btn btn-banner cool-btn'  %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+
+
+
+
+
+
+
+
+<%# <p>Find me in app/views/users/show.html.erb</p>
+<div class="container">
+  <h1>Edit profile</h1>
+  <img class="avatar" src="https://kitt.lewagon.com/placeholder/users/ssaunier" alt="avatarupload">
+  <button class="btn btn-primary" id="new-profile-picture-btn">Upload New</button>
+  <form action="email address">
+    <input type="email addres">em
+  </form>
+</div>
+<br> %>

@@ -7,5 +7,5 @@ class User < ApplicationRecord
   has_many :attendances, dependent: :destroy
   has_many :events, through: :attendances, dependent: :destroy
 
-  has_one_attached :photo
+  has_one_attached :image
 end
