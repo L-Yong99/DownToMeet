@@ -2,6 +2,9 @@ class EventsController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
   def index
     @events = Event.all
+    @events_upcoming = Event.where("date >= ?", Date.today)
+    all_dates = Event.select([:id, :date])
+    # raise
   end
 
   def show
