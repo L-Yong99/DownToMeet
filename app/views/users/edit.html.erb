@@ -13,10 +13,8 @@
 
       <div class="form-group mb-5">
         <%= f.input :first_name, class:"form-control mb-1"  %>
-        <%= f.label :last_name %>
-        <%= f.text_field :last_name, class:"form-control mb-4"  %>
-        <%= f.label :email %>
-        <%= f.text_field :email, class:"form-control mb-4" %>
+        <%= f.input :last_name, class:"form-control mb-4"  %>
+        <%= f.input :email, class:"form-control mb-4" %>
         <div class="d-grid gap-2">
           <%= f.button :submit, "Update Profile", class: 'btn btn-banner cool-btn'  %>
         </div>
