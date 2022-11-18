@@ -70,7 +70,12 @@
   border-top-right-radius: 10px;
   width:45px;
   border:#d9d9d9 solid 1px;
-  background-color: #f65858 ;
+  background-color: #f65858;
   color:white;
   border:none;
+}
+
+.navbar-nav{
+  display:flex;
+  gap:10px;
 }
