@@ -25,8 +25,8 @@ user2 = User.create!(
 )
 
 user3 = User.create!(
-  email: "hien.was.eaten.by.flora@gmail.com",
-  first_name: "Hien",
+  email: "lincoln@gmail.com",
+  first_name: "Lincoln",
   last_name: "Flora",
   password: "123456"
 )
@@ -54,7 +54,7 @@ event1 = Event.create!(
   time: Time.now,
   private: true,
   category: category.sample,
-  user:user1
+  user: user1
 )
 
 event2 = Event.create!(
@@ -66,7 +66,7 @@ event2 = Event.create!(
   time: Time.now,
   private: true,
   category: category.sample,
-  user:user1
+  user: user1
 )
 
 event3 = Event.create!(
@@ -78,6 +78,41 @@ event3 = Event.create!(
   time: Time.now,
   private: true,
   category: category.sample,
-  user:user2
+  user: user2
 )
-# puts event1
+
+event4 = Event.create!(
+  name: "Outdoor camping",
+  detail: "camping together is fun",
+  spots: 10,
+  address: "1110 ECP, Singapore 449880",
+  date: Date.new(2022,11,27),
+  time: Time.now,
+  private: true,
+  category: "Camping",
+  user: user3
+)
+
+event5 = Event.create!(
+  name: "Outdoor Adventure 2D1N",
+  detail: "Come along, for an adventure",
+  spots: 35,
+  address: "Nicoll Dr, Singapore 498991",
+  date: Date.new(2022,11,27),
+  time: Time.now,
+  private: true,
+  category: "Adventure",
+  user: user3
+)
+
+event6 = Event.create!(
+  name: "Outdoor Frontier",
+  detail: "Challenge yourself!",
+  spots: 8,
+  address: "825B Chuan Hoe Ave, Singapore 549854",
+  date: Date.new(2022,11,27),
+  time: Time.now,
+  private: true,
+  category: "challenges",
+  user: user3
+)
