@@ -17,8 +17,8 @@
         <h3>Wednesday, November 16</h3>
       </div>
       <% @events.each do |event| %>
-      <%# <% event_date = Date.new(event.date.to_datetime) %>% %>
-      <%# <% event_time= Time.new(event.time)%> %>
+      <%# <% event_date = Date.new(event.date.to_datetime) %>
+      <%# <% event_time= Time.new(event.time)%>
         <%= link_to event_path(event), class:"d-flex flex-column link" do %>
           <div class="event-container">
             <div class="event-first-container">
