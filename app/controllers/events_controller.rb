@@ -2,9 +2,22 @@ class EventsController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
   def index
     @events = Event.all
-    @events_upcoming = Event.where("date >= ?", Date.today)
-    all_dates = Event.select([:id, :date])
-    # raise
+    events_upcoming = Event.where("date >= ?", Date.today)
+    all_dates = Event.distinct(:date).select(:date).order(:date)
+    @all_dates_upcoming = all_dates.where("date >= ?", Date.today)
+    set_dates = @all_dates_upcoming.map do |d|
+      d.date
+    end
+    @set_dates = set_dates.to_json
+    if params[:date].present?
+      @events_upcoming = Event.where("date = ?", params[:date])
+      all_dates = @events_upcoming.distinct(:date).select(:date).order(:date)
+      @all_dates_upcoming = all_dates.where("date >= ?", Date.today)
+      @date_set = params[:date];
+    else
+      @all_dates_upcoming = all_dates.where("date >= ?", Date.today)
+    end
+    @attendances = Attendance.all
   end
 
   def show
@@ -33,14 +46,28 @@ class EventsController < ApplicationController
   end
 
   def hosted_event
-    @hosted_events = Event.where(user:current_user)
-    @count = @hosted_events.map do |hosted_event|
-      pending_count = Attendance.where(event: hosted_event, status: 'pending').count
-      accepted_count = Attendance.where(event: hosted_event, status: 'accepted').count
-      { pending_count: pending_count,
-      accepted_count: accepted_count
-      }
+    @hosted_events_upcoming_dates = Event.where("events.date >= ?", Date.today).distinct.order("date").pluck("date")
+    set_dates = @hosted_events_upcoming_dates.map do |d|
+      d
     end
+    @set_dates = set_dates.to_json
+    @date_set = params[:date];
+    if params[:date].present?
+      @hosted_events_upcoming_dates = Event.where("events.date = ?", params[:date]).distinct.order("date").pluck("date")
+      # @attendances = Attendance.where(status: 'accepted', user: current_user)
+      # @attendances_upcoming = @attendances.joins(:event).where("events.date = ?", params[:date])
+      # @attendances_upcoming_dates = @attendances_upcoming.joins(:event).distinct.pluck("events.date")
+      # # @attendances = Attendance.joins(:event).where(["events.date = ? and attendances.user_id = ? and attendances.status = ?", params[:date],current_user.id,"accepted"])
+      # @date_set = params[:date];
+    end
+    # @hosted_events = Event.where(user:current_user)
+    # @count = @hosted_events.map do |hosted_event|
+    #   pending_count = Attendance.where(event: hosted_event, status: 'pending').count
+    #   accepted_count = Attendance.where(event: hosted_event, status: 'accepted').count
+    #   { pending_count: pending_count,
+    #   accepted_count: accepted_count
+    #   }
+    # end
   end
 
   def hosted_event_detail

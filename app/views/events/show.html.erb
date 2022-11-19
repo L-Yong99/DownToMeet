@@ -111,31 +111,33 @@
         <h5><%= @spot_left %> spots left</h5>
       </div>
       <% attendance = Attendance.find_by(user: current_user, event: @event) %>
-      <% if user_signed_in? %>
-        <form action=<%="/users/#{current_user.id}/attendances"%> method="post">
-          <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
-          <%= hidden_field_tag :event_id, @event.id %>
-          <% if attendance.nil? %>
-            <% if @event.private %>
-              <input type="submit" value="Request to Join" class="btn btn-banner">
+      <% if @spot_left != 0 %>
+        <% if user_signed_in? %>
+          <form action=<%="/users/#{current_user.id}/attendances"%> method="post">
+            <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+            <%= hidden_field_tag :event_id, @event.id %>
+            <% if attendance.nil? %>
+              <% if @event.private %>
+                <input type="submit" value="Request to Join" class="btn btn-banner">
+              <% else %>
+                <input type="submit" value="Join" class="btn btn-banner">
+              <% end %>
             <% else %>
-              <input type="submit" value="Join" class="btn btn-banner">
+              <% if attendance.status == 'accepted' %>
+                <input type="submit" value="Going" disabled class="btn btn-banner">
+              <% elsif attendance.status == 'rejected' %>
+                <input type="submit" value="Rejected" disabled class="btn btn-banner">
+              <% else %>
+                <input type="submit" value="Pending" disabled class="btn btn-banner">
+              <% end %>
             <% end %>
-          <% else %>
-            <% if attendance.status == 'accepted' %>
-              <input type="submit" value="Going" disabled class="btn btn-banner">
-            <% elsif attendance.status == 'rejected' %>
-              <input type="submit" value="Rejected" disabled class="btn btn-banner">
-            <% else %>
-              <input type="submit" value="Pending" disabled class="btn btn-banner">
-            <% end %>
-          <% end %>
-        </form>
-      <% else %>
-        <% if @event.private %>
-          <%= link_to "Request to join", new_user_session_path, class:"btn btn-banner"%>
+          </form>
         <% else %>
-          <%= link_to "join", new_user_session_path, class:"btn btn-banner"%>
+          <% if @event.private %>
+            <%= link_to "Request to join", new_user_session_path, class:"btn btn-banner"%>
+          <% else %>
+            <%= link_to "join", new_user_session_path, class:"btn btn-banner"%>
+          <% end %>
         <% end %>
       <% end %>
       <% if user_signed_in? %>
