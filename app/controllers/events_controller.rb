@@ -62,6 +62,24 @@ class EventsController < ApplicationController
         info_window: render_to_string(partial: "info_window", locals: {event: event})
       }
     end
+
+    events_upcoming = Event.where("date >= ?", Date.today)
+    all_dates = Event.distinct(:date).select(:date).order(:date)
+    @all_dates_upcoming = all_dates.where("date >= ?", Date.today)
+    # set_dates = @all_dates_upcoming.map do |d|
+    #   d.date
+    # end
+    # @set_dates = set_dates.to_json
+    @set_dates =[].to_json
+    if params[:date].present?
+      @events_upcoming = Event.where("date = ?", params[:date])
+      all_dates = @events_upcoming.distinct(:date).select(:date).order(:date)
+      @all_dates_upcoming = all_dates.where("date >= ?", Date.today)
+      @date_set = params[:date];
+    else
+      @all_dates_upcoming = all_dates.where("date >= ?", Date.today)
+    end
+    @attendances = Attendance.all
   end
 
   def hosted_event
