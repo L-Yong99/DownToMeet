@@ -39,6 +39,14 @@ class EventsController < ApplicationController
     else
       @events = Event.all
     end
+
+    @markers = @events.geocoded.map do |event|
+      {
+        lat: event.latitude,
+        lng: event.longitude,
+        info_window: render_to_string(partial: "info_window", locals: {event: event})
+      }
+    end
   end
 
   def hosted_event
