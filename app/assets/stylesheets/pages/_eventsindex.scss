@@ -45,6 +45,12 @@
   padding: 10px;
   border-bottom: 3px #a2a2a2a2 solid;
 }
+
+.date_search_page {
+  padding: 10px;
+  border-bottom: 1px #a2a2a2a2 solid;
+}
+
 .date > h3 {
   font-weight: bold;
   font-size: 1.3rem;
@@ -58,6 +64,8 @@
   gap: 12px;
   color: #757575;
 }
+
+
 
 .event-container:last-child{
   // border-bottom:none;
@@ -91,6 +99,10 @@
 
 .sub-font {
   color: #757575;
+}
+
+.sub-redfont {
+  color: #ff3e75;
 }
 
 
@@ -136,4 +148,15 @@
 
 .attend-delete i {
   color: #757575;
+}
+
+.mydot{
+  background: #979797;
+  margin-left: 4px;
+  margin-right: 1px;
+  margin-bottom: 3px;
+  border-radius: 50%;
+  display: inline-block;
+  height: 2.5px;
+  width: 2.5px;
 }

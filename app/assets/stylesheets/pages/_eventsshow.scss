@@ -185,10 +185,14 @@ bottom:0;
   color: white;
 }
 
+.btn.btn-banner:disabled {
+  background-color: #cccccc;
+}
+
 .btn.btn-delete{
   font-size:1.3em;
   padding:10px;
-  background-color:#f02e2e;
+  background-color: #f65858;
   border:none;
   color: white;
 }
