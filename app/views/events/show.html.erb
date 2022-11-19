@@ -6,7 +6,12 @@
   <div class="container mb-4">
     <h2 class="event-banner font-weight-bold mt-4"><strong><%= @event.name %></strong></h2>
     <div class="event-banner-details">
+    <% if @event.user.image.key.nil? %>
       <img src="https://st3.depositphotos.com/6672868/13701/v/600/depositphotos_137014128-stock-illustration-user-profile-icon.jpg" alt="">
+      <% else %>
+    <%= cl_image_tag @event.user.image.key %>
+      <% end %>
+
       <div class="d-flex flex-column justify-content-center">
         <h6>Hosted By</h6>
         <h6><strong><%= @event.user.first_name %></strong></h6>
@@ -31,9 +36,10 @@
       </div>
       <div class="card-grid-container">
         <div class="card-attendee">
-          <% if @event.user.photo.key.nil? %>
+          <% if @event.user.image.key.nil? %>
             <img src="https://st3.depositphotos.com/6672868/13701/v/600/depositphotos_137014128-stock-illustration-user-profile-icon.jpg" alt="image place holder">
           <% else %>
+           <%= cl_image_tag @event.user.image.key %>
           <% end %>
           <h4><%= @event.user.first_name %></h4>
           <p>Organizer</p>
@@ -41,9 +47,10 @@
         <% @accepted_attendances.each do |attendance|%>
           <% if attendance.user != @event.user %>
             <div class="card-attendee">
-              <% if attendance.user.photo.key.nil? %>
+              <% if attendance.user.image.key.nil? %>
                 <img src="https://st3.depositphotos.com/6672868/13701/v/600/depositphotos_137014128-stock-illustration-user-profile-icon.jpg" alt="image place holder">
               <% else %>
+                <%= cl_image_tag attendance.user.image.key %>
               <% end %>
               <h4><%= attendance.user.first_name %></h4>
               <p>Member</p>
@@ -69,9 +76,10 @@
           <div class="request-container">
             <% @pending_attendances.each do |pending_attendance|%>
               <div class="request-flex-container">
-                <% if pending_attendance.user.photo.key.nil? %>
+                <% if pending_attendance.user.image.key.nil? %>
                   <img src="https://st3.depositphotos.com/6672868/13701/v/600/depositphotos_137014128-stock-illustration-user-profile-icon.jpg" alt="image place holder">
                 <% else %>
+                <%= cl_image_tag pending_attendance.user.image.key %>
                 <% end %>
                 <div>
                   <p ><strong ><%= pending_attendance.user.first_name %></strong></p>

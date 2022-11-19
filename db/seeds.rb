@@ -27,8 +27,8 @@ user2 = User.create!(
 )
 
 user3 = User.create!(
-  email: "hien.was.eaten.by.flora@gmail.com",
-  first_name: "Hien",
+  email: "lincoln@gmail.com",
+  first_name: "Lincoln",
   last_name: "Flora",
   password: "123456"
 )
@@ -52,7 +52,7 @@ event0 = Event.create!(
   name: Faker::Hobby.activity,
   detail: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
   spots: rand(1..10).floor,
-  address: Faker::Address.street_name,
+  address: "4 Tampines Central 5, Singapore 529510",
   date: Date.new(2022,10,27),
   time: Time.current,
   private: true,
@@ -65,7 +65,7 @@ event1 = Event.create!(
   name: Faker::Hobby.activity,
   detail: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
   spots: rand(1..10).floor,
-  address: Faker::Address.street_name,
+  address: "Sentul Cres, Singapore 821313",
   date: Date.today,
   time: Time.current,
   private: true,
@@ -77,7 +77,7 @@ event2 = Event.create!(
   name: Faker::Hobby.activity,
   detail: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
   spots: rand(1..10).floor,
-  address: Faker::Address.street_name,
+  address: "2 Ang Mo Kio Dr, Singapore 567720",
   date: Date.today,
   time: Time.current,
   private: true,
@@ -89,7 +89,7 @@ event3 = Event.create!(
   name: Faker::Hobby.activity,
   detail: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
   spots: rand(1..10).floor,
-  address: Faker::Address.street_name,
+  address: "4 Tampines Central 5, Singapore 529510",
   date: Date.today,
   time: Time.current,
   private: true,
@@ -101,7 +101,7 @@ event4 = Event.create!(
   name: Faker::Hobby.activity,
   detail: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
   spots: rand(1..10).floor,
-  address: Faker::Address.street_name,
+  address: "2 Ang Mo Kio Dr, Singapore 567720",
   date: Date.new(2022,11,27),
   time: Time.new(2022,11,27,2,0,0,"+08:00"  ),
   private: true,
@@ -113,7 +113,7 @@ event5 = Event.create!(
   name: Faker::Hobby.activity,
   detail: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
   spots: rand(1..10).floor,
-  address: Faker::Address.street_name,
+  address: "80 Mandai Lake Rd, 729826",
   date: Date.new(2022,11,27),
   time: Time.new(2022,11,27,16,0,0,"+08:00"),
   private: true,
@@ -125,7 +125,7 @@ event6 = Event.create!(
   name: Faker::Hobby.activity,
   detail: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
   spots: rand(1..10).floor,
-  address: Faker::Address.street_name,
+  address: "2 Ang Mo Kio Dr, Singapore 567720",
   date: Date.today,
   time: Time.now,
   private: true,
@@ -137,7 +137,7 @@ event7 = Event.create!(
   name: Faker::Hobby.activity,
   detail: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
   spots: rand(1..10).floor,
-  address: Faker::Address.street_name,
+  address: "80 Mandai Lake Rd, 729826",
   date: Date.new(2022,11,30),
   time: Time.local(2022,11,30,18,0,0),
   private: true,
@@ -156,6 +156,44 @@ event8 = Event.create!(
   category: category.sample,
   user:user1
 )
+
+event9 = Event.create!(
+  name: "Outdoor camping",
+  detail: "camping together is fun",
+  spots: 10,
+  address: "1110 ECP, Singapore 449880",
+  date: Date.new(2022,11,27),
+  time: Time.now,
+  private: true,
+  category: "Camping",
+  user: user3
+)
+
+event10 = Event.create!(
+  name: "Outdoor Adventure 2D1N",
+  detail: "Come along, for an adventure",
+  spots: 35,
+  address: "Nicoll Dr, Singapore 498991",
+  date: Date.new(2022,11,27),
+  time: Time.now,
+  private: true,
+  category: "Adventure",
+  user: user3
+)
+
+event11 = Event.create!(
+  name: "Outdoor Frontier",
+  detail: "Challenge yourself!",
+  spots: 8,
+  address: "4 Tampines Central 5, Singapore 529510",
+  date: Date.new(2022,11,27),
+  time: Time.now,
+  private: true,
+  category: "challenges",
+  user: user3
+)
+
+
 
 attend1 = Attendance.create(user:user1,event:event2,status:"accepted")
 attend2 = Attendance.create(user:user1,event:event3,status:"accepted")

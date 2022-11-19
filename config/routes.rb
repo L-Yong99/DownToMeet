@@ -13,8 +13,11 @@ Rails.application.routes.draw do
     resources :attendances, only: [:index, :show, :create, :destroy]
   end
   resources :attendances, only: [:destroy]
-  resources :events, only: [:index, :show, :destroy, :new, :create]
+  resources :events, only: [:index, :show, :destroy, :new, :create] do
+    collection do
+      get 'search', to: 'events#search'
+    end
+  end
 
   resources :pages
-
 end

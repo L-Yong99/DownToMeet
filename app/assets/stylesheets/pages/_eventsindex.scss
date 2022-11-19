@@ -35,6 +35,12 @@
   padding: 10px;
 }
 
+.event-map {
+  width: 20%;
+  // border: 2px solid green;
+  padding: 10px;
+}
+
 .date {
   padding: 10px;
   border-bottom: 3px #a2a2a2a2 solid;
@@ -87,9 +93,14 @@
   color: #757575;
 }
 
-.dark-font {
-  color: black;
-  font-weight: bold;
+
+.sub-font:hover{
+  color:#414141;
+ }
+
+.dark-font{
+  color:black;
+  font-weight:bold;
 }
 
 .event-types {

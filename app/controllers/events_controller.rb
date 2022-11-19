@@ -45,6 +45,24 @@ class EventsController < ApplicationController
     redirect_to events_user_path(current_user)
   end
 
+  def search
+    @events = Event.all
+    if params[:query].present?
+      sql_query = "name ILIKE :query OR user ILIKE :query"
+      @events = Event.where(sql_query, query: "%#{params[:query]}%")
+    else
+      @events = Event.all
+    end
+
+    @markers = @events.geocoded.map do |event|
+      {
+        lat: event.latitude,
+        lng: event.longitude,
+        info_window: render_to_string(partial: "info_window", locals: {event: event})
+      }
+    end
+  end
+
   def hosted_event
     @hosted_events_upcoming_dates = Event.where("events.date >= ?", Date.today).distinct.order("date").pluck("date")
     set_dates = @hosted_events_upcoming_dates.map do |d|
@@ -71,12 +89,12 @@ class EventsController < ApplicationController
   end
 
   def hosted_event_detail
-  @hosted_event = Event.find(params[:id])
-    if current_user == @hosted_event.user
-      @pending_attendances = Attendance.where(event: @hosted_event, status: 'pending')
-   else
-      redirect_to events_user_path(current_user)
-   end
+    @hosted_event = Event.find(params[:id])
+      if current_user == @hosted_event.user
+        @pending_attendances = Attendance.where(event: @hosted_event, status: 'pending')
+      else
+        redirect_to events_user_path(current_user)
+      end
   end
 
   def hosted_event_patch
