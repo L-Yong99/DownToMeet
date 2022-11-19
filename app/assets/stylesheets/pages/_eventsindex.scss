@@ -2,11 +2,10 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-
 }
-.link{
+.link {
   text-decoration: none;
-  color:#a2a2a2a2
+  color: #a2a2a2a2;
 }
 
 // .event-main-container{
@@ -20,7 +19,7 @@
 .calendar-container {
   width: 30%;
   // border: 2px solid green;
-  display:flex;
+  display: flex;
   flex-direction: column;
 }
 
@@ -51,13 +50,19 @@
   font-size: 1.3rem;
 }
 
+
 .event-container {
   display: flex;
-  border-bottom:1px solid #a2a2a2a2;
-  padding:10px;
-  gap:12px;
-  color:#757575;
+  border-bottom: 1px solid #a2a2a2a2;
+  padding: 10px;
+  gap: 12px;
+  color: #757575;
 }
+
+.event-container:last-child{
+  // border-bottom:none;
+}
+
 
 .event-first-container {
   width: 190px;
@@ -75,18 +80,19 @@
   flex-grow: 1;
 }
 
-.icon{
-  gap:15px;
+.icon {
+  gap: 15px;
 }
 
-.date-font{
-color:#877457 ;
-font-weight:bold;
+.date-font {
+  color: #877457;
+  font-weight: bold;
 }
 
-.sub-font{
- color:#757575;
+.sub-font {
+  color: #757575;
 }
+
 
 .sub-font:hover{
   color:#414141;
@@ -97,37 +103,37 @@ font-weight:bold;
   font-weight:bold;
 }
 
-.event-types{
+.event-types {
   width: 100%;
   height: 400px;
   border: 2px solid red;
   margin-bottom: 20px;
 }
 
-.attend-btn{
-  padding:7.5px;
-  padding-left:15px;
-  padding-right:15px;
-  border-radius:100vh;
-  border:none;
-  background-color:#f6f7f8;
+.attend-btn {
+  padding: 7.5px;
+  padding-left: 15px;
+  padding-right: 15px;
+  border-radius: 100vh;
+  border: none;
+  background-color: #f6f7f8;
 }
 
-.attend-delete > div{
-  gap:18px;
-  align-items:center;
+.attend-delete > div {
+  gap: 18px;
+  align-items: center;
 }
 
-.btn-delete{
-  border-radius:8px;
-  padding-top:4px;
-  padding-bottom:4px;
-  color:rgb(255, 255, 255);
-  font-size:bold;
+.btn-delete {
+  border-radius: 8px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  color: rgb(255, 255, 255);
+  font-size: bold;
   background-color: rgb(220, 43, 43);
   opacity: 1;
 }
 
-.attend-delete  i{
-  color:#757575;
+.attend-delete i {
+  color: #757575;
 }

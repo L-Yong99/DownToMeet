@@ -1,3 +1,12 @@
-    <div class="flatpickr mt-5" data-controller="datepicker" >
-        <input type="text" data-datepicker-target="datePicker" placeholder="Select Date.." data-input class="date-picker-input d-none"  > <!-- input is mandatory -->
-      </div>
+<div data-controller="datepicker">
+<form action="<%= locals[:url] %>" method="get" data-datepicker-target="dateForm" class="date-form">
+    <div class="flatpickr mt-5" >
+    <input type="text" value="<%= locals[:date] %>" hidden  id="hidden-date">
+    <input type="text" value="<%= locals[:setDate] %>" hidden  id="hidden-setDate">
+    <input name="date" type="text" data-datepicker-target="datePicker" placeholder="Select Date.." data-input class="date-picker-input d-none" ><!-- input is mandatory -->
+    </div>
+    <button id="search-submit" type="submit" data-datepicker-target="dateSubmit" hidden >submit</button>
+</form>
+</div>
+
+<%# <%= locals[:setDate]  %>

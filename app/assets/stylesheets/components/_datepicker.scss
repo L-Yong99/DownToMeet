@@ -31,3 +31,19 @@ border-radius:10px;
 span.flatpickr-weekday {
  flex:0;
 }
+
+.has-action {
+  position: relative;
+}
+
+.has-action:before {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #569ff7;
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  margin-left: -5px;
+}
