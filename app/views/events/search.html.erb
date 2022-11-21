@@ -13,18 +13,18 @@
       </div>
     </div>
     <div class="event-list">
-      <% if !@all_dates_upcoming.empty? %>
-        <% @all_dates_upcoming.each_with_index do |date,i| %>
+      <% if !@dates_upcoming.empty? %>
+        <% @dates_upcoming.each_with_index do |date,i| %>
           <div class="date">
             <% if Date.today == date %>
               <h3>Today</h3>
             <% else%>
               <h3><%= date.strftime("%A, %B %d") %></h3>
             <% end %>
-          </div>
-          <% events = @events_upcoming.where(date:date).order('time') %>
+          </div>@events_upcoming
+          <% events = @events_upcoming.select { |event| event.date == date}.sort_by(&:time) %>
           <% events.each_with_index do |event,i| %>
-            <% accepted_attendance_count = @attendances.where(event:event, status:"accepted").count %>
+            <% accepted_attendance_count = Attendance.where(event:event, status:"accepted").count %>
             <%= link_to event_path(event), class:"d-flex flex-column link" do %>
               <div class="event-container" id= "event_<%= i %>">
                 <div class="event-first-container">
