@@ -21,7 +21,7 @@
             <% else%>
               <h3><%= date.strftime("%A, %B %d") %></h3>
             <% end %>
-          </div>@events_upcoming
+          </div>
           <% events = @events_upcoming.select { |event| event.date == date}.sort_by(&:time) %>
           <% events.each_with_index do |event,i| %>
             <% accepted_attendance_count = Attendance.where(event:event, status:"accepted").count %>
