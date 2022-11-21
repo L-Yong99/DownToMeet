@@ -1,3 +1,4 @@
+<%= render "shared/myflashes" %>
 <div class="container">
   <% if user_signed_in? %>
     <h1 class="mt-5" id="header-font">Welcome, <%= current_user.first_name %> 👋</h1>
@@ -12,6 +13,7 @@
       </div> %>
       <%= render "shared/datepicker", locals: {date: @date_set, setDate: @set_dates, url:"/" } %>
     </div>
+     <% if @all_dates_upcoming_count > 0 %>
     <div class="event-list">
       <% @all_dates_upcoming.each do |date| %>
         <div class="date">
@@ -25,7 +27,7 @@
         <% events.each do |event| %>
           <% accepted_attendance_count = @attendances.where(event:event, status:"accepted").count %>
           <%= link_to event_path(event), class:"d-flex flex-column link" do %>
-            <div class="event-container">
+            <div class="event-container mb-5">
               <div class="event-first-container">
                 <% if event.photo.key.nil? %>
                   <img src="https://media.istockphoto.com/id/1147544807/vector/thumbnail-image-vector-graphic.jpg?s=612x612&w=0&k=20&c=rnCKVbdxqkjlcs3xH87-9gocETqpspHFXu5dIGB4wuM=" alt="image place holder">
@@ -63,6 +65,14 @@
           <% end %>
           <%# <%= link_to event.name, event_path(event), class:"d-flex flex-column" %>
         <% end %>
+      <% end %>
+       <% else %>
+        <div class="no-event-container-e">
+          <div class="no-event">
+            <img src="https://secure.meetupstatic.com/next/images/your-events/NoAttending.svg?w=384" alt="">
+            <h3>No matches found</h3>
+          </div>
+        </div>
       <% end %>
     </div>
   </div>

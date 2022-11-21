@@ -110,7 +110,7 @@
 <div class="bottom-banner">
   <div class="bottom-banner-detail container">
     <div class="bottom-banner-item1">
-      <h5><%= @event.date %> <%= @event.time %></h5>
+      <h5><%= @event.date.to_datetime.strftime("%a, %b %d") %> <%= @event.time.to_datetime.strftime("%l:%M %p SST") %></h5>
       <h5><strong><%= @event.name %></strong></h5>
     </div>
     <div class="bottom-banner-item2">

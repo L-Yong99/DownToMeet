@@ -1,0 +1,17 @@
+.map-container {
+  margin-top:30px;
+  width: 30%;
+  // border: 2px solid green;
+  display: flex;
+  position:sticky;
+  top:0;
+  align-self: flex-start;
+}
+
+#map{
+  border-radius:10px;
+}
+
+.event-container.active{
+  border:3px solid #569ff7;
+}

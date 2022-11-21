@@ -1,11 +1,10 @@
-
-
 <%# ----------------------- %>
-
-
 <div class="container">
+<% if user_signed_in? %>
+    <h1 class="mt-5" id="header-font">Welcome, <%= current_user.first_name %> 👋</h1>
+  <% end %>
   <div class="d-flex mt-4 event-main-container">
-    <div class="calendar-container" >
+    <div class="map-container" >
       <div data-controller="map"
         id='map'
         data-map-markers-value="<%= @markers.to_json %>"
@@ -14,53 +13,66 @@
       </div>
     </div>
     <div class="event-list">
-      <div class="date">
-        <h3>Wednesday, November 16</h3>
-      </div>
-      <% @events.each do |event| %>
-      <%# <% event_date = Date.new(event.date.to_datetime) %>
-      <%# <% event_time= Time.new(event.time)%>
-        <%= link_to event_path(event), class:"d-flex flex-column link" do %>
-          <div class="event-container">
-            <div class="event-first-container">
-            <% if event.photo.key.nil? %>
-              <img src="https://cdn.britannica.com/34/233234-050-1649BFA9/Pug-dog.jpg" alt="image place holder">
-            <% else %>
-              <%= cl_image_tag event.photo.key %>
-            <% end %>
-
-            </div>
-            <div class="event-mid-container d-flex flex-column  justify-content-between">
-              <div class="d-flex justify-content-between">
-                <h6 class="date-font"><%= event.date.to_datetime.strftime("%a,%b %d") %> <%= event.time.to_datetime.strftime("%l:%M %p SST") %></h6>
-                <h6 class="dark-font">Suggested</h6>
-              </div>
-              <div class="d-flex justify-content-between">
-                <h6 class="dark-font"><strong><%= event.name%></strong></h6>
-                <p class="sub-font">Hosted by: <%= event.user.first_name %> <% if event.user.image.key.nil? %>
-                  <img class="avatar_host" src="https://kitt.lewagon.com/placeholder/users/ssaunier">
+      <% @all_dates_upcoming.each do |date| %>
+        <div class="date">
+          <% if Date.today == date.date %>
+            <h3>Today</h3>
+          <% else%>
+            <h3><%= date.date.strftime("%A, %B %d") %></h3>
+          <% end %>
+        </div>
+        <% events = @events_upcoming.where(date:date.date).order('time') %>
+        <% @events.each_with_index do |event,i| %>
+          <% accepted_attendance_count = @attendances.where(event:event, status:"accepted").count %>
+          <%= link_to event_path(event), class:"d-flex flex-column link" do %>
+            <div class="event-container" id= "event_<%= i %>">
+              <div class="event-first-container">
+                <% if event.photo.key.nil? %>
+                  <img src="https://media.istockphoto.com/id/1147544807/vector/thumbnail-image-vector-graphic.jpg?s=612x612&w=0&k=20&c=rnCKVbdxqkjlcs3xH87-9gocETqpspHFXu5dIGB4wuM=" alt="image place holder">
                 <% else %>
-                  <%= cl_image_tag event.user.image.key, class:"avatar_host"%>
-                <% end %></p>
+                  <%= cl_image_tag event.photo.key %>
+                <% end %>
               </div>
-              <div>
-                <p class="sub-font"><%= event.category%></p>
-              </div>
-              <div class="d-flex justify-content-between align-items-center" >
-                <h6 class="sub-font"><%= event.spots%> attendees</h6>
-                <div class="icon d-flex">
-                  <i class="fa-solid fa-arrow-up-from-bracket fa-lg"></i>
-                  <i class="fa-solid fa-star fa-lg"></i>
+              <div class="event-mid-container d-flex flex-column  justify-content-between">
+                <div class="d-flex justify-content-between">
+                  <h6 class="date-font"><%= event.date.to_datetime.strftime("%a, %b %d") %> <%= event.time.to_datetime.strftime("%l:%M %p SST") %></h6>
+                  <h6 class="dark-font">Suggested</h6>
+                </div>
+                <div class="d-flex justify-content-between">
+                  <h6 class="dark-font" ><strong><%= event.name%></strong></h6>
+                  <p class="sub-font">Hosted by: <%= event.user.first_name %> <% if event.user.image.key.nil? %>
+                      <img class="avatar_host" src="https://kitt.lewagon.com/placeholder/users/ssaunier">
+                    <% else %>
+                      <%= cl_image_tag event.user.image.key, class:"avatar_host"%>
+                    <% end %></p>
+                </div>
+                <div>
+                  <p class="sub-font"><%= event.category%></p>
+                </div>
+                <div class="d-flex justify-content-between align-items-center" >
+                  <div class="d-flex count-container">
+                    <h6 class="sub-font"><%= accepted_attendance_count %> attendees</h6>
+                    <% if event.spots - accepted_attendance_count <= 10%>
+                      <h6 class="sub-font text-danger"><%= event.spots - accepted_attendance_count %> spots left</h6>
+                    <% else %>
+                      <h6 class="sub-font"><%= event.spots - accepted_attendance_count %> spots left</h6>
+                    <% end %>
+                  </div>
+                  <div class="icon d-flex">
+                    <i class="fa-solid fa-arrow-up-from-bracket fa-lg"></i>
+                    <i class="fa-solid fa-star fa-lg"></i>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
+          <% end %>
+          <%# <%= link_to event.name, event_path(event), class:"d-flex flex-column" %>
         <% end %>
-        <%# <%= link_to event.name, event_path(event), class:"d-flex flex-column" %>
       <% end %>
     </div>
   </div>
 </div>
+<%# <button id="click">clickme</button> %>
 <%#
 <div class="container">
   <h1 class="mb-2">All Events</h1>
@@ -68,10 +80,7 @@
   <%# <%= link_to event.name, event_path(event), class:"d-flex flex-column" %>
   <%# <% end %>
   <%# </div> %>
-
-
-
-    <%# <div class="outer">
+  <%# <div class="outer">
     <div class="inner">
     </div>
 </div> %>
