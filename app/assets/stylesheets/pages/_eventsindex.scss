@@ -63,6 +63,7 @@
   padding: 10px;
   gap: 12px;
   color: #757575;
+  // scroll-margin-top: 100px;
 }
 
 
@@ -149,6 +150,15 @@
 .attend-delete i {
   color: #757575;
 }
+
+.no-event-container-e{
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  height:50vh;
+  // border:red solid 2px;
+  text-align: center;
+  width:65%;
 
 .mydot{
   background: #979797;

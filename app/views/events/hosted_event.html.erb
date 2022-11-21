@@ -8,6 +8,7 @@
       <%= render "shared/datepicker" , locals: {date: @date_set, url:"/users/#{current_user.id}/events", setDate: @set_dates} %>
     </div>
     <div class="event-list">
+    <% if @hosted_events_upcoming_dates_count > 0 %>
       <% @hosted_events_upcoming_dates.each do |date| %>
         <div class="date">
           <% if Date.today == date %>
@@ -57,6 +58,14 @@
           <% end %>
           <%# <%= link_to event.name, event_path(event), class:"d-flex flex-column" %>
         <% end %>
+      <% end %>
+      <% else %>
+        <div class="no-event-container-a">
+          <div class="no-event">
+            <img src="https://secure.meetupstatic.com/next/images/your-events/NoAttending.svg?w=384" alt="">
+            <h3>You have no hosted events</h3>
+          </div>
+        </div>
       <% end %>
     </div>
   </div>

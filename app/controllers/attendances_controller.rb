@@ -13,10 +13,13 @@ class AttendancesController < ApplicationController
       @attendances_upcoming_dates = @attendances_upcoming.joins(:event).distinct.order("events.date").pluck("events.date")
       # @attendances = Attendance.joins(:event).where(["events.date = ? and attendances.user_id = ? and attendances.status = ?", params[:date],current_user.id,"accepted"])
       @date_set = params[:date];
+      @attendance_count = @attendances_upcoming_dates.count
     else
       # @attendances = Attendance.where(status: 'accepted', user: current_user)
       # @attendances_upcoming = @attendances.joins(:event).where("events.date >= ?", Date.today)
       @attendances_upcoming_dates = @attendances_upcoming.joins(:event).distinct.order("events.date").pluck("events.date")
+      @attendance_count = @attendances_upcoming_dates.count
+      # raise
     end
   end
 

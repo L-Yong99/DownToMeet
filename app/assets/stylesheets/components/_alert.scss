@@ -4,3 +4,32 @@
   right: 16px;
   z-index: 1000;
 }
+
+// .info-container{
+//   z-index: 1000;
+//   // top: 16px;
+//   // left: 16px;
+//   // position:fixed;
+//   display:flex;
+//   justify-content: center;
+//   align-items: center;
+//   height: 80px;
+// }
+
+.alert.info {
+  position: relative;
+  // bottom: 16px;
+  // right: 16px;
+  z-index: 1000;
+  height: 60px;
+  background-color: #008294;
+  color: white;
+  text-align: center;
+  top: 2px;
+  left: 0px;
+}
+
+.btn-my {
+  position: absolute;
+  left: 500px;
+}

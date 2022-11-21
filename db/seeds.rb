@@ -193,6 +193,78 @@ event11 = Event.create!(
   user: user3
 )
 
+event12 = Event.create!(
+  name: "Geo 1",
+  detail: "Challenge yourself!",
+  spots: 8,
+  address: "4 Tampines Central 5, Singapore 529510",
+  date: Date.new(2022,11,27),
+  time: Time.now,
+  private: true,
+  category: "challenges",
+  user: user3
+)
+
+event13 = Event.create!(
+  name: "Geo 2",
+  detail: "Challenge yourself!",
+  spots: 8,
+  address: "Nicoll Dr, Singapore 498991",
+  date: Date.new(2022,11,27),
+  time: Time.now,
+  private: true,
+  category: "challenges",
+  user: user3
+)
+
+event14 = Event.create!(
+  name: "Geo 3",
+  detail: "Challenge yourself!",
+  spots: 8,
+  address: "Sentul Cres, Singapore 821313",
+  date: Date.new(2022,11,27),
+  time: Time.now,
+  private: true,
+  category: "challenges",
+  user: user3
+)
+
+event15 = Event.create!(
+  name: "Geo 4",
+  detail: "Challenge yourself!",
+  spots: 8,
+  address: "2 Ang Mo Kio Dr, Singapore 567720",
+  date: Date.new(2022,11,27),
+  time: Time.now,
+  private: true,
+  category: "challenges",
+  user: user3
+)
+
+event16 = Event.create!(
+  name: "Geo 5",
+  detail: "Challenge yourself!",
+  spots: 8,
+  address: "1110 ECP, Singapore 449880",
+  date: Date.new(2022,11,27),
+  time: Time.now,
+  private: true,
+  category: "challenges",
+  user: user3
+)
+
+
+event17 = Event.create!(
+  name: "Geo 6",
+  detail: "Challenge yourself!",
+  spots: 8,
+  address: "80 Mandai Lake Rd, 729826",
+  date: Date.new(2022,11,27),
+  time: Time.now,
+  private: true,
+  category: "challenges",
+  user: user3
+)
 
 
 attend1 = Attendance.create(user:user1,event:event2,status:"accepted")
