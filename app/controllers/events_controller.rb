@@ -64,8 +64,10 @@ class EventsController < ApplicationController
       sql_query = "name ILIKE :query OR user ILIKE :query"
       @events = Event.where(sql_query, query: "%#{params[:query]}%")
       @events_upcoming = @events.where("date >= ?", Date.today)
-      all_dates = @events_upcoming.distinct(:date).select(:date).order(:date)
-      @all_dates_upcoming = all_dates.where("date >= ?", Date.today)
+      # @all_dates_upcoming = @events_upcoming.distinct(:date).select(:date).order(:date)
+      @all_dates_upcoming = @events_upcoming.distinct(:date).order(:date).pluck("date")
+      # @all_dates_upcoming = all_dates.where("date >= ?", Date.today)
+      # raise
     end
 
     @markers = @events_upcoming.geocoded.map do |event|
@@ -78,23 +80,23 @@ class EventsController < ApplicationController
       }
     end
 
-    events_upcoming = Event.where("date >= ?", Date.today)
-    all_dates = Event.distinct(:date).select(:date).order(:date)
-    @all_dates_upcoming = all_dates.where("date >= ?", Date.today)
-    # set_dates = @all_dates_upcoming.map do |d|
-    #   d.date
+    # events_upcoming = Event.where("date >= ?", Date.today)
+    # all_dates = Event.distinct(:date).select(:date).order(:date)
+    # @all_dates_upcoming = all_dates.where("date >= ?", Date.today)
+    # # set_dates = @all_dates_upcoming.map do |d|
+    # #   d.date
+    # # end
+    # # @set_dates = set_dates.to_json
+    # @set_dates =[].to_json
+    # if params[:date].present?
+    #   @events_upcoming = Event.where("date = ?", params[:date])
+    #   all_dates = @events_upcoming.distinct(:date).select(:date).order(:date)
+    #   @all_dates_upcoming = all_dates.where("date >= ?", Date.today)
+    #   @date_set = params[:date];
+    # else
+    #   @all_dates_upcoming = all_dates.where("date >= ?", Date.today)
     # end
-    # @set_dates = set_dates.to_json
-    @set_dates =[].to_json
-    if params[:date].present?
-      @events_upcoming = Event.where("date = ?", params[:date])
-      all_dates = @events_upcoming.distinct(:date).select(:date).order(:date)
-      @all_dates_upcoming = all_dates.where("date >= ?", Date.today)
-      @date_set = params[:date];
-    else
-      @all_dates_upcoming = all_dates.where("date >= ?", Date.today)
-    end
-    @attendances = Attendance.all
+    # @attendances = Attendance.all
   end
 
   def hosted_event
