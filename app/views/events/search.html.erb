@@ -2,6 +2,7 @@
 <div class="container">
 <% if user_signed_in? %>
     <h1 class="mt-5" id="header-font">Welcome, <%= current_user.first_name %> 👋</h1>
+
   <% end %>
   <div class="d-flex mt-4 event-main-container">
     <div class="map-container" >
@@ -51,11 +52,11 @@
                 </div>
                 <div class="d-flex justify-content-between align-items-center" >
                   <div class="d-flex count-container">
-                    <h6 class="sub-font"><%= accepted_attendance_count %> attendees</h6>
+                    <h6 class="sub-font"><%= accepted_attendance_count %> attendees <span class="mydot"></span></h6>
                     <% if event.spots - accepted_attendance_count <= 10%>
-                      <h6 class="sub-font text-danger"><%= event.spots - accepted_attendance_count %> spots left</h6>
+                      <h6 class="sub-redfont text-danger"><%= event.spots - accepted_attendance_count %> spots left</h6>
                     <% else %>
-                      <h6 class="sub-font"><%= event.spots - accepted_attendance_count %> spots left</h6>
+                      <h6 class="sub-redfont"><%= event.spots - accepted_attendance_count %> spots left</h6>
                     <% end %>
                   </div>
                   <div class="icon d-flex">
