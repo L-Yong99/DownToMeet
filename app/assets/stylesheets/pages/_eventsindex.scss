@@ -171,3 +171,64 @@
   height: 2.5px;
   width: 2.5px;
 }
+
+.footer-container{
+  width:100%;
+  height:560px;
+  background-color: #212121 ;
+  color:white;
+}
+
+
+.btn-footer{
+border-radius:5px;
+background-color: transparent;
+border:2px white solid;
+color:white;
+padding:10px;
+}
+
+.first-line{
+  gap:10px;
+  //  border: red 2px solid;
+   padding-top:20px;
+   padding-bottom:20px;
+   border-bottom: solid  1px #757575;
+}
+
+.second-line{
+  // gap:10px;
+  //  border: red 2px solid;
+   padding-top:20px;
+   padding-bottom:10px;
+   width:90%;
+}
+
+.second-line-col{
+  display:flex;
+  flex-direction:column;
+  flex-grow:1;
+  align-self: start;
+  font-size:0.9rem;
+  margin:0px;
+  padding:0px;
+}
+
+.third-line{
+display:flex;
+justify-content: space-between;
+align-items: center;
+}
+
+.banner-icons{
+  display:flex;
+  gap:30px;
+}
+
+.fourth-line{
+  padding-top:50px;
+  padding-bottom:10px;
+  // border: 2px solid red;
+  display:flex;
+  justify-content: space-between;
+  }
