@@ -48,8 +48,6 @@ A MeetUp website clone
   7. added map features to see all events location 
   8. user can delete created events
   
-
-  
 </details>
 
 
@@ -58,12 +56,7 @@ A MeetUp website clone
 **Focus on finalising CSS styling and animations**
 
 
-## #5: Review and patch codes 
-
-**Check for bugs**
-
-
-## #6: Presentation
+## #5: Presentation
 
 **focus on preparing for presentation**
 
